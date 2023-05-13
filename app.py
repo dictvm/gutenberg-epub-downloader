@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import time
 import re
@@ -12,14 +14,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-
 def get_third_param(url):
     return url.split('/')[2]
 
-
 def filter_invalid_urls(urls, invalid_patterns):
     return [url for url in urls if not any(re.search(pattern, url) for pattern in invalid_patterns)]
-
 
 books_url = os.environ["BOOKS_URL","https://www.projekt-gutenberg.org/info/texte/allworka.html"]
 response = requests.get(books_url)
