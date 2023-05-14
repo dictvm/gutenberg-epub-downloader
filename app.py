@@ -30,7 +30,7 @@ sorted_urls = sorted(urls, key=get_third_param)
 invalid_patterns = [r"abc\.de", r"lesetipps", r"info/texte", r"@",r"autoren/info",r"index.html"]
 filtered_urls = filter_invalid_urls(sorted_urls, invalid_patterns)
 
-webdriver_service = Service('./chromedriver')
+webdriver_service = Service(os.environ.get("CHROMEDRIVER_PATH", "./chromedriver"))
 
 for book_url in filtered_urls:
     epub2go_url = f"http://www.epub2go.eu/?t={book_url}"
@@ -40,7 +40,7 @@ for book_url in filtered_urls:
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    options.binary_location = '/usr/bin/google-chrome'  # Update this path to match the location of your Chrome/Chromium binary
+    options.binary_location = os.environ.get("CHROMIUM_PATH", "/usr/bin/google-chrome")
 
     driver = webdriver.Chrome(service=webdriver_service, options=options)
     driver.get(epub2go_url)
