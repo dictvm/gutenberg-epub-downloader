@@ -63,4 +63,4 @@ for book_url in filtered_urls:
     finally:
         driver.quit()
 
-    time.sleep(0.5)  # Wait 20 seconds before processing the next URL
+    time.sleep(0.5)  # Wait half a second before processing the next URL
